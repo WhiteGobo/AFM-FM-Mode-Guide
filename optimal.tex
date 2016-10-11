@@ -1,0 +1,58 @@
+\section{perfekte Schwingung}
+Wir untersuchen hier die Frequenzverschiebung bei einem in Frequency-Modulation( \FM ) Modus gesteuertes Atomic-Force-Microscope ( \AFM ). Als erstes nehmen wir hierbei an, dass wir nur eine harmonische Schwingung besitzen.
+
+\subsection{Annahmen}
+Der Cantilever wir als harmonischer Oszillator betrachtet. Die resultierende Schwingung soll eine harmonische Schwingung sein.\\
+Da unsere Aparatur perfekt eingestellt ist, liegt die Phasendifferenz zwischen unserem Antriebssignal und unserer Antwortsignal 90 Grad.
+
+\subsection{Frequenzverschiebung einer einzelnen Schwingung}
+
+Wir idealisieren unsere Schwingungfeder zu einem harmonischen Oszillator:
+\begin{equation}
+	m \ddot{z} + \frac{m \omega}{Q_{cant}} \dot{z} + k \left( z-z_{drive} - \Delta L \right) = F_{ts} (d+z) \label{federgleichung} 
+\end{equation}
+
+Unser Cantilever besitzt nur eine rein harmonische Schwingung und unserer Antrieb besitzt eine Phasendifferenz zu 90 Grad zur Antwort.
+\begin{gather}
+	z = A \sin ( \omega t) \\ 
+	z_{drive} = A_{drive} \sin ( \omega t)
+\end{gather}
+
+Wir interessieren uns für die Frequenzverschiebung die durch das Kraftfeld bewirkt wird.
+Nach der linearen Antworttheorie ist die Amplitude der Antwort des Cantilevers nur abhängig von der Antriebskraft. Das ist die Kraft die senkrecht zur Schwingung des Cantilevers läuft. Dazu gehört nicht nur unsere von der Maschine ausgeführte Antriebskraft $F_{drive}$, sondern auch die senkrechten Anteile des Kraftfeldes zwischen Spitze und Oberfläche $F_{ts}$.
+
+Die Verstimmung der Antwort(Resonanzfrequenz) von der natürlichen Antwortfrequenz(Eigenfrequenz) sind dementsprechend die Kraftanteile, die nicht-senkrecht, aso parallel zur Antwort stehen, verantwortlich. 
+Diese extrahieren wir aus unserem Kraftfeld durch die Aufteilung auf die Fourrierereihe:
+\begin{equation}
+	\mitlungz{ \dots } = \int \dots A \sin (\omega t) \mathrm{d} t
+\end{equation}
+
+Wenn wir diese Operation auf die Federgleichung anwenden, erhalten wir die relevanten Terme:
+\begin{equation}
+	0
+\end{equation}
+Daraus können wir die Frequenzverschiebung berechnen:
+\begin{equation}
+	\Delta f = - \frac{f_0}{A^2 k } \mitlungz{F_{ts}} \label{gl:frequenzverschiebung}
+\end{equation}
+
+
+\subsection{Gewichtungsfunktion bei konservativem Kraftfeld}
+
+Um ein Ergebniss aus unserer Frequenzverschiebung \ref{gl:frequenzverschiebung} abhängig von unserem Kraftfeld zu erhalten, können wir die Mittelung ein bisschen umstellen:
+\begin{equation}
+	\mitlungz{F_{ts}} = \int F_{ts} (d + z) A \sin (\omega t) \mathrm{d}t
+\end{equation}
+Dabei interessieren wir uns nicht für eine zeitliche Mittelung sondern eher um eine räumliche, da wir ja ein räumliches Verständniss des Kraftfeldes haben wollen. Wir erhalten nach einigen Umformungen:
+\begin{equation}
+	\mitlungz{F_{ts}} = \int F_{ts}(d + z) \frac{1}{\sqrt{A^2 - z^2}} \mathrm{d}t
+\end{equation}
+
+Damit können wir sogleich eine Gewichtungsfunktion bestimmen:
+\begin{equation}
+	g(z) = \frac{1}{\sqrt{A^2 - z^2}}
+\end{equation}
+
+
+\subsection{Gewichtungsfunktion bei Bremsung}
+Obige Gleichung gilt nur für konservative Kraftfelder
