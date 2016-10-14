@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+	\path[draw] (0,0) rectangle (5,1) (0,0) -- ++(-60:1cm) -- ++(60:1cm);
+	\path[draw] (-2,-1) -- (3,-1);
+	\path[pattern=north east lines] (-2,-1) rectangle (3,-1.5);
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+	\path[draw] (5,0) --  (0,0) -- ++(-60:0.5cm) -- ++(60:0.5cm);
+	\path[pattern=crosshatch dots] (5,0.5) rectangle (5.5 , -0.5);
+	\path[draw] (-2,-1) -- (3,-1);
+	\path[pattern=north east lines] (-2,-1) rectangle (3,-1.5);
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[cantilever/.pic={
+	\coordinate(-fixation) at (5,0);
+	\coordinate(-up) at ($(-fixation)+(175:5cm)$);
+	\coordinate(-down) at ($(-fixation)+(185:5cm)$);
+	\path[draw] (-fixation) .. controls(4,0) and (1,0) .. (-down) 
+		-- ++(-47:0.5cm) -- ++(73:0.5cm);
+	\path[draw] (-fixation) .. controls(4,0) and (1,0) .. (-up) 
+		-- ++(-73:0.5cm) -- ++(47:0.5cm);
+	%\draw decorate[decoration=crosses] (-up) -- (-down);
+	\path[pattern=crosshatch dots] (5,0.5) rectangle (5.5 , -0.5);
+	\path[draw] (-2,-1) -- (3,-1);
+	\path[pattern=north east lines] (-2,-1) rectangle (3,-1.5);
+	}]
+	\path (0,0) pic (h) {cantilever};
+	\draw [decorate, decoration={brace,mirror, raise=1pt}] (h-up) -- (h-down) node[midway,left] {A};
+\end{tikzpicture}

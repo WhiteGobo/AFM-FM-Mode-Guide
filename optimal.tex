@@ -1,6 +1,14 @@
-\section{perfekte Schwingung}
+\section{FM-Mode}
+\subsection{harmonische Schwingung}
 Wir untersuchen hier die Frequenzverschiebung bei einem in Frequency-Modulation( \FM ) Modus gesteuertes Atomic-Force-Microscope ( \AFM ). Als erstes nehmen wir hierbei an, dass wir nur eine harmonische Schwingung besitzen.
 
+
+\begin{figure}[H]
+	\begin{tikzpicture}
+
+	\end{tikzpicture}
+	\caption{Verhalten des ideaisierten Cantilevers}
+\end{figure}
 \subsection{Annahmen}
 Der Cantilever wir als harmonischer Oszillator betrachtet. Die resultierende Schwingung soll eine harmonische Schwingung sein.\\
 Da unsere Aparatur perfekt eingestellt ist, liegt die Phasendifferenz zwischen unserem Antriebssignal und unserer Antwortsignal 90 Grad.
@@ -39,16 +47,18 @@ Daraus können wir die Frequenzverschiebung berechnen:
 
 \subsection{Gewichtungsfunktion bei konservativem Kraftfeld}
 
-Um ein Ergebniss aus unserer Frequenzverschiebung \ref{gl:frequenzverschiebung} abhängig von unserem Kraftfeld zu erhalten, können wir die Mittelung ein bisschen umstellen:
-\begin{equation}
-	\mitlungz{F_{ts}} = \int F_{ts} (d + z) A \sin (\omega t) \mathrm{d}t
-\end{equation}
-Dabei interessieren wir uns nicht für eine zeitliche Mittelung sondern eher um eine räumliche, da wir ja ein räumliches Verständniss des Kraftfeldes haben wollen. Wir erhalten nach einigen Umformungen:
+Nach Gleichung \ref{gl:frequenzverschiebung} erhalten wir eine zeitliche Mittlung der Kraft. Wir interessieren uns aber für das Kraftfeld. Darum muss eine Mittelung über den Ort erfolgen.
+Nach Substitution erhalten wir:
 \begin{equation}
 	\mitlungz{F_{ts}} = \int F_{ts}(d + z) \frac{1}{\sqrt{A^2 - z^2}} \mathrm{d}t
 \end{equation}
 
-Damit können wir sogleich eine Gewichtungsfunktion bestimmen:
+Um diese Gleichung zu vereinfachen stellen wir eine Gewichtungsfunktion $g(z)$ auf, sodass gilt:
+\begin{equation}
+	%\dots = \int F_{ts}(z+z_0) g(z) \mathrm{d} z
+\end{equation}
+
+Die Gewichtungsfunktion können wir dann aus den beiden vorherigen Gleichungen bestimmen:
 \begin{equation}
 	g(z) = \frac{1}{\sqrt{A^2 - z^2}}
 \end{equation}
