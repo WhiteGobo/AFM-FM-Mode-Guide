@@ -29,3 +29,38 @@
 	\path (0,0) pic (h) {cantilever};
 	\draw [decorate, decoration={brace,mirror, raise=1pt}] (h-up) -- (h-down) node[midway,left] {A};
 \end{tikzpicture}
+
+
+
+\begin{tikzpicture}[cantilever/.pic={
+	\coordinate(-fixation) at (5,0);
+	\coordinate(-down) at ($(-fixation)+(185:5cm)$);
+	\path[draw] (5,0) to[out=180, in=15] (-down) 
+		-- ++(-47:0.5cm) -- ++(73:0.5cm);
+		\path[draw, pattern=crosshatch dots] (5,0.5) rectangle (5.5 , -0.5);
+	\coordinate(-boxeast) at (5.5,0);
+	\begin{scope}[green, opacity=0.5, yshift=3pt]
+		\coordinate(-up) at ($(-fixation)+(175:5cm)$);
+		\coordinate(-fixation2) at (5,0);
+		\path[draw, pattern=crosshatch dots] (5,0.5) rectangle (5.5 , -0.5);%
+		\path[draw, out=180, in=-15] (5,0) to (-up) 
+			-- ++(-73:0.5cm) -- ++(47:0.5cm);
+	\end{scope}
+	\path[draw] (-2,-1) -- (3,-1);
+	\path[pattern=north east lines] (-2,-1) rectangle (3,-1.5);
+	}]
+	\path (0,0) pic (h) {cantilever};
+	\draw [decorate, decoration={brace,mirror, raise=1pt}] (h-up) -- (h-down) node[midway,left] {$A$};
+	\draw[<->] (h-boxeast) +(3pt,0.2cm) -- +(3pt,-0.2cm) node[midway,right] {$A_{drive}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+	\path[clip] (-1,-6) rectangle (6,6);
+	\draw[->] (0,-2) -- (0,5);
+	\draw[->] (0,0) -- (5,0);
+
+	\draw plot file {dat/lennard0.dat};
+	\draw plot file {dat/lennard1.dat};
+\end{tikzpicture}
+
