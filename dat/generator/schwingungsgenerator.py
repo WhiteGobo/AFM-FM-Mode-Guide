@@ -19,12 +19,15 @@ pi=3.141592653
 
 dest = "../"
 
-xarray = np.linspace(0.6,3,120)
+xarray = np.linspace(0.6,10,420)
 
-Amplitude = [1, 1]
-Radius = [1, 1.2]
+Amplitude = [1, 1, 3, 0]
+Radius = [1, 1.2, 2,2]
 for n in range(0,2):
     yarray = Amplitude[n] * ((Radius[n]/xarray)**12 - 2*(Radius[n]/xarray)**6)
     makesafefile_cond1(xarray, yarray, name="lennard" + str(n) + ".dat")
 
+for n in range(2,4):
+    yarray = Amplitude[n] * ((Radius[n]/xarray)**12 - 2*(Radius[n]/xarray)**6) -0.5*xarray
+    makesafefile_cond1(xarray, yarray, name="lennardetfeder" + str(n) + ".dat")
 

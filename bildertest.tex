@@ -56,11 +56,86 @@
 
 
 \begin{tikzpicture}
-	\path[clip] (-1,-6) rectangle (6,6);
 	\draw[->] (0,-2) -- (0,5);
-	\draw[->] (0,0) -- (5,0);
+	\draw[->] (-1,0) -- (5,0);
 
+	\path[clip] (-1,-1.5) rectangle (4,4);
 	\draw plot file {dat/lennard0.dat};
 	\draw plot file {dat/lennard1.dat};
 \end{tikzpicture}
 
+\begin{tikzpicture}[x=1cm, y=1cm]
+	\draw[->,gray] (0,-5.5) -- (0,0.5);
+	\draw[->,gray] (0,-3) -- (9.5,-3);
+
+	\path[clip] (-1,-5) rectangle (9,0);
+	\draw plot file {dat/lennardetfeder2.dat};
+	\draw plot file {dat/lennardetfeder3.dat};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:6.283]
+	\draw[->] (0,0) -- (4,0);
+	\draw[->] (0,0) -- (0,4);
+
+	\draw plot ({sin(\x r)}, 0.5*\x);
+\end{tikzpicture}
+
+\begin{tikzpicture}[potent/.pic={
+		\draw[->,gray] (0,-5.5) -- (0,0.5);
+		\draw[->,gray, name path=xaxis] (0,-3) -- (9.5,-3);
+		\path[clip] (-1,-5) rectangle (9,0);
+		\draw[name path=pot1] plot file {dat/lennardetfeder2.dat};
+		\draw plot file {dat/lennardetfeder3.dat};
+		\path[red, name intersections={of=xaxis and pot1, name=i}];
+			%(i-1) circle (2pt);
+			%(intersections-2) circle (2pt);
+		\coordinate (-asd) at (i-3);
+	},
+	oscillation/.pic={
+		\draw[domain=0:6.283] plot ({sin(\x r)}, \x);
+		\coordinate (-up) at (1,3);
+		\coordinate (-down) at (-1,3);
+		\coordinate (-left) at (0,0);
+		\coordinate (-right) at (0,6.283);
+	}]
+	\pic (qwertz) {potent};
+	\fill[red] (qwertz-asd) circle (2pt);
+	\pic[below=3cm, y=-0.5cm, x=1.5cm] (oszi) at (qwertz-asd) {oscillation};
+	\draw[densely dashed, opacity=0.5] (oszi-left) + (0,7.5) -- +(0,-4.5);
+	\draw[dashed] (oszi-up) +(0,9) -- +(0,-3);
+	\draw[dashed] (oszi-down) +(0,9) -- +(0,-3);
+	\draw[->] (oszi-right) +(0,-1) -- +(0,5);
+	\draw (oszi-right) +(-2pt,0) -- +(2pt,0) node[right] {$0$};
+	\draw (oszi-left) +(-2pt,0) -- +(2pt,0) node[left] {$T$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}[potent/.pic={
+		\draw[->,gray] (0,-5.5) -- (0,0.5);
+		\draw[->,gray, name path=xaxis] (0,-3) -- (9.5,-3);
+		\path[clip] (-1,-5) rectangle (9,0);
+		\draw[name path=pot1] plot file {dat/lennardetfeder2.dat};
+		\draw plot file {dat/lennardetfeder3.dat};
+		\path[red, name intersections={of=xaxis and pot1, name=i}];
+			%(i-1) circle (2pt);
+			%(intersections-2) circle (2pt);
+		\coordinate (-asd) at (i-3);
+	},
+	oscillation/.pic={
+		\draw[domain=0:6.283] plot ({sin(\x r)}, \x);
+		\coordinate (-up) at (1,3);
+		\coordinate (-down) at (-1,3);
+		\coordinate (-left) at (0,0);
+		\coordinate (-right) at (0,6.283);
+	}]
+	\pic (qwertz) {potent};
+	\fill[red] (qwertz-asd) circle (2pt);
+	\pic[below=3cm,xshift=-0.5cm, y=-0.7cm, x=2.3cm] (oszi) at (qwertz-asd) {oscillation};
+	\draw[densely dashed, opacity=0.5] (oszi-left) + (0,7.5) -- +(0,-4.5);
+	\draw[dashed] (oszi-up) +(0,9) -- +(0,-3);
+	\draw[dashed] (oszi-down) +(0,9) -- +(0,-3);
+	\draw[->] (oszi-right) +(0,-1) -- +(0,5);
+	\draw (oszi-right) +(-2pt,0) -- +(2pt,0) node[right] {$0$};
+	\draw (oszi-right) +(-2pt,3.141) -- +(2pt,3.141) node[left] {$T$};
+\end{tikzpicture}
