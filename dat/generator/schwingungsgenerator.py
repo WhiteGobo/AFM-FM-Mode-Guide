@@ -28,6 +28,14 @@ def fourrier(xarray,yarray, k):
     b *= xarray[1] - xarray[0]
     return a,b
 
+def mittel_settozero(array):
+    tmp = 0
+    for x in array:
+        tmp += x
+
+    tmp /= array.size
+    back = array - tmp
+    return back
 
 
 pi=3.141592653
@@ -53,12 +61,13 @@ for n in range(2,4):
     ytarray = Amplitude[n] * ((Radius[n]/xtarray)**12 - 2*(Radius[n]/xtarray)**6) -0.5*xtarray
     makesafefile(tarray, ytarray, name="lennardetfedertime" + str(n) + ".dat")
     makesafefile(tarray, xtarray, name="lennardetfedertime_osci" + str(n) + ".dat")
-    ytarray_sin = np.linspace(0,1,tarray.size)
-    ytarray_cos = np.linspace(0,1,tarray.size)
+    ytarray = mittel_settozero(ytarray)
+    ytarray_sin = np.zeros(tarray.shape)
+    ytarray_cos = np.zeros(tarray.shape)
     for k in range(10):
         tmp1, tmp2 = fourrier(tarray, ytarray, k)
-        ytarray_sin = tmp1* np.sin(k*tarray)
-        ytarray_cos = tmp2* np.cos(k*tarray)
+        ytarray_sin += tmp1* np.sin(k*tarray)
+        ytarray_cos += tmp2* np.cos(k*tarray)
     makesafefile(tarray, ytarray_sin, name="lennardetfedertime_sin" + str(n) + ".dat")
     makesafefile(tarray, ytarray_cos, name="lennardetfedertime_cos" + str(n) + ".dat")
      

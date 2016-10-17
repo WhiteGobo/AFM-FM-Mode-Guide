@@ -64,6 +64,20 @@
 	\draw plot file {dat/lennard1.dat};
 \end{tikzpicture}
 
+\begin{figure}
+\begin{tikzpicture}
+	\draw plot file {dat/lennardetfedertime2.dat};
+	\draw[yshift=1pt, red] plot file {dat/lennardetfedertime_sin2.dat};
+	\draw[yshift=2pt, green] plot file {dat/lennardetfedertime_cos2.dat};
+\end{tikzpicture}
+\begin{tikzpicture}
+	\draw plot file {dat/lennardetfedertime3.dat};
+	\draw[yshift=1pt, red] plot file {dat/lennardetfedertime_sin3.dat};
+	\draw[yshift=2pt, green] plot file {dat/lennardetfedertime_cos3.dat};
+\end{tikzpicture}
+\caption{hier bin ihc grade}
+\end{figure}
+
 \begin{tikzpicture}[x=1cm, y=1cm]
 	\draw[->,gray] (0,-5.5) -- (0,0.5);
 	\draw[->,gray] (0,-3) -- (9.5,-3);
@@ -71,6 +85,17 @@
 	\path[clip] (-1,-5) rectangle (9,0);
 	\draw plot file {dat/lennardetfeder2.dat};
 	\draw plot file {dat/lennardetfeder3.dat};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+	\draw[->,gray] (0,-5.5) -- (0,0.5);
+	\draw[->,gray] (0,-3) -- (9.5,-3);
+
+	\path[clip] (-1,-5) rectangle (9,0);
+	\draw plot file {dat/lennardetfedertime2.dat};
+	\draw plot file {dat/lennardetfedertime3.dat};
+	%\draw[yshift=-7cm] plot file {dat/lennardetfedertime_osci2.dat};
 \end{tikzpicture}
 
 \begin{tikzpicture}[domain=0:6.283]
