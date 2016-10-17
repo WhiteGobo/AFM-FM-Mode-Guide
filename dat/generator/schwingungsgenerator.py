@@ -15,6 +15,21 @@ def makesafefile_cond1(xarray, yarray, name="test.dat"):
     savearray = np.array([xarray.compressed(), yarray.compressed()]).T
     np.savetxt(dest + name, savearray)
 
+def fourrier(xarray,yarray, k):
+    if xarray.size != yarray.size:
+        return 0
+    a=0
+    b=0
+    for n in range(yarray.size):
+        a += yarray[n]*np.sin(k * xarray[n])
+        b += yarray[n]*np.cos(k * xarray[n])
+    b -= (yarray[0] + yarray[yarray.size-1]) /2
+    a *= xarray[1] - xarray[0]
+    b *= xarray[1] - xarray[0]
+    return a,b
+
+
+
 pi=3.141592653
 
 dest = "../"
@@ -35,7 +50,15 @@ for n in range(2,4):
 for n in range(2,4):
     tarray = np.linspace(0,2*np.pi,100)
     xtarray = 5 + 2*np.sin(tarray)
-    yarray = Amplitude[n] * ((Radius[n]/xtarray)**12 - 2*(Radius[n]/xtarray)**6) -0.5*xtarray
-    makesafefile(tarray, yarray, name="lennardetfedertime" + str(n) + ".dat")
+    ytarray = Amplitude[n] * ((Radius[n]/xtarray)**12 - 2*(Radius[n]/xtarray)**6) -0.5*xtarray
+    makesafefile(tarray, ytarray, name="lennardetfedertime" + str(n) + ".dat")
     makesafefile(tarray, xtarray, name="lennardetfedertime_osci" + str(n) + ".dat")
-
+    ytarray_sin = np.linspace(0,1,tarray.size)
+    ytarray_cos = np.linspace(0,1,tarray.size)
+    for k in range(10):
+        tmp1, tmp2 = fourrier(tarray, ytarray, k)
+        ytarray_sin = tmp1* np.sin(k*tarray)
+        ytarray_cos = tmp2* np.cos(k*tarray)
+    makesafefile(tarray, ytarray_sin, name="lennardetfedertime_sin" + str(n) + ".dat")
+    makesafefile(tarray, ytarray_cos, name="lennardetfedertime_cos" + str(n) + ".dat")
+     
